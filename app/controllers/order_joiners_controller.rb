@@ -34,7 +34,8 @@ class OrderJoinersController < ApplicationController
 
         logged_user.cart.cart_joiners.destroy_all
 
-        render json: @order_joiner
+        # byebug
+        render json: {order_id: @order.id, created_at: @order.created_at, items: @order.items}
     end
 
 end

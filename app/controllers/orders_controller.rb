@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
 
     def index
-        # byebug
         @orders = Order.all
 
         render json: @orders
