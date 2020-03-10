@@ -16,12 +16,12 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         Cart.create(user_id: @user.id)
-        
+        # byebug
         if @user.valid?
             jwt_token = encode_token({user_id: @user.id})
             render json: {user: UserSerializer.new(@user), token: jwt_token}, status: 201
         else
-            render json: {error: "Invalid username or password"}
+            render json: {error: "Can't be blank"}
         end
     end
 
