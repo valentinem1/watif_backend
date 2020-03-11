@@ -3,20 +3,17 @@ class UsersController < ApplicationController
 
     def index
         @users = User.all
-
         render json: @users
     end
 
     def show
         @user = User.find(params[:id])
-
         render json: @user
     end
 
     def create
         @user = User.create(user_params)
         Cart.create(user_id: @user.id)
-        # byebug
         if @user.valid?
             jwt_token = encode_token({user_id: @user.id})
             render json: {user: UserSerializer.new(@user), token: jwt_token}, status: 201
@@ -40,10 +37,6 @@ class UsersController < ApplicationController
         jwt_token = encode_token({user_id: @user.id})
         render json: {user: UserSerializer.new(@user), token: jwt_token}
     end
-
-    # def profile
-    #     render json: logged_user
-    # end
 
     private
 
