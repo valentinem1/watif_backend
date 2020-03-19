@@ -13,29 +13,16 @@ class OrderJoinersController < ApplicationController
         render json: @order_joiner
     end
 
-     # create OrderJoiner once click on checkout button
-    # it will create an instance of OrderJoiner for each CartJoiner instances
-    # def create
-    #     order = Order.create(params)
-    #     user.cart.cart_joiners.each do |cj|
-    #         OrderJoiner.create(order: order.id, item_id: cj.item.id, quantity: cj.quantity)
-    #     end
-
-    #     user.cart.cart_joiners.destroy_all
-
-    # end
-
     def create
         @order = Order.create(user_id: logged_user.id)
 
         @order_joiner = logged_user.cart.cart_joiners.each do |cart_joiner|
             OrderJoiner.create(order_id: @order.id, item_id: cart_joiner.item.id)
         end
-
+        # byebug
         logged_user.cart.cart_joiners.destroy_all
 
-        # byebug
-        render json: {order_id: @order.id, created_at: @order.created_at, items: @order.items}
+        render json: {order_id: @order.id, created_at: @order.created_at.strftime("%B, %d, %Y"), items: @order.items}
     end
 
 end

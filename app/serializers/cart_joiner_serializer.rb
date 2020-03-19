@@ -1,4 +1,4 @@
 class CartJoinerSerializer < ActiveModel::Serializer
-  attributes :id, :item
+  attributes :id, :item, :quantity
 end
 

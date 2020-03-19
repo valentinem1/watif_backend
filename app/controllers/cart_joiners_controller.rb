@@ -28,43 +28,38 @@ class CartJoinersController < ApplicationController
         
         create_cart_joiner = cart_joiner_params.merge({cart_id: logged_user.cart.id})
         @cart_joiner = CartJoiner.create(create_cart_joiner)
-        
-        # @same_item_array = CartJoiner.all.map do |cart_joiner|
-        #     cart_joiner.item_id === @added_item
-        # end
-        
-        # @item_quantity_in_cart_joiner = @same_item_array.count
-        # byebug
+
+        # functionality to increase quantity in cart without duplicating an item
         # check_item = logged_user.cart.cart_joiners.any?{|cart_joiner| cart_joiner[:item_id] === params[:item_id]}
         
         # if(check_item)
 
         #     @cart_joiner = CartJoiner.find_by(item_id: params[:item_id])
             
-        #     # @new_cart_quantity = @cart_joiner.quantity + 1
-        #     # @cart_joiner.update(quantity: @new_cart_quantity)
-        #     # byebug
+        #     @new_cart_quantity = @cart_joiner.quantity + 1
+        #     @cart_joiner.update(quantity: @new_cart_quantity)
+            
+        #     render json: @cart_joiner
         # else
         #     create_cart_joiner = cart_joiner_params.merge({cart_id: logged_user.cart.id})
         #     @cart_joiner = CartJoiner.create(create_cart_joiner)
+
         # end
         
         render json: @cart_joiner
     end
 
     def destroy
+        # functionality to decrease item quantity in cart without deleting all of them
         # if item already exists in cart_joiner cart_joiner.quantity -= 1
         # else destroy 
         
         # @cart_joiner = CartJoiner.find(params[:id]).item_id
-        # byebug
         @cart_joiner = CartJoiner.find(params[:id])
         @removed_id = @cart_joiner.item_id
         # @removed_id = CartJoiner.find(params[:id]).item_id
-        # byebug
         @removed_item = Item.find(@removed_id)
         
-        # byebug
         # if(@removed_id && @cart_joiner)
 
             # @new_cart_quantity = @cart_joiner.quantity - 1

@@ -1,19 +1,12 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :first_name, :last_name, :username, :address, :email, :picture, :orders
 
-  # has_many :orders
   has_many :reviews
   has_one :cart
   
-  # def orders
-  #   self.object.orders.map do |order|
-  #     [id: order.id, items: order.items]
-  #   end
-  # end
-  
   def orders
     self.object.orders.map do |order|
-      {order_id: order.id, created_at: order.created_at, items: order.items}
+      {order_id: order.id, created_at: order.created_at.strftime("%B, %d, %Y"), items: order.items}
     end
   end
 

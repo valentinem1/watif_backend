@@ -38,6 +38,13 @@ class UsersController < ApplicationController
         render json: {user: UserSerializer.new(@user), token: jwt_token}
     end
 
+    def destroy
+        @user = User.find(params[:id])
+        @user.destroy
+        
+        render json: {message: "Account has been deleted"}
+    end
+
     private
 
     def user_params
