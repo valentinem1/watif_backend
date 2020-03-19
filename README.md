@@ -4,7 +4,7 @@ A `React and Rails` designed as an e-marketplace(Etsy clone) allowing creativity
 
 
 ## Technologies
-**Back End:** link to [Back End Repository](https://github.com/valentinem1/watif_backend)
+**Link to [Front End Repository](https://github.com/valentinem1/watif_frontend)**
 - Ruby [2.6.1]
 - Rails [~> 6.0.2, >= 6.0.2.1] - MVC web framework used as an API
 - Bcrypt [~> 3.1.7] - Encrypt and secure user passwords
