@@ -40,7 +40,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "aws-sdk-s3", require: false
 gem "jwt", "~> 2.2"
 gem 'rest-client'
 gem 'active_model_serializers'
