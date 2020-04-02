@@ -2,23 +2,23 @@ require 'rest-client'
 require 'dotenv'
 Dotenv.load
 
-# Item.destroy_all
+Item.destroy_all
 
-# API_KEY = ENV['ETSY_API_KEY']
+API_KEY = ENV['ETSY_API_KEY']
 
-# etsy_data = RestClient.get("https://openapi.etsy.com/v2/listings/active?api_key=#{API_KEY}")
+etsy_data = RestClient.get("https://openapi.etsy.com/v2/listings/active?api_key=#{API_KEY}")
 
-# item_array = JSON.parse(etsy_data)["results"]
+item_array = JSON.parse(etsy_data)["results"]
 
-# item_array.each do |item|
-#     Item.create(
-#         title: item["title"],
-#         description: item["description"],
-#         price: item["price"],
-#         quantity: item["quantity"],
-#         url: item["url"]
-#     )
-# end
+item_array.each do |item|
+    Item.create(
+        title: item["title"],
+        description: item["description"],
+        price: item["price"],
+        quantity: item["quantity"],
+        url: item["url"]
+    )
+end
 
 item_one = Item.find_by(id: 1)
 item_one.image = 'https://i.etsystatic.com/10854006/r/il/284d7c/2148918968/il_794xN.2148918968_7fkp.jpg'
