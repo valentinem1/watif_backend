@@ -23,7 +23,7 @@ class CartJoinersController < ApplicationController
         # if it exist count how many times it is in cart_joiner
 
         logged_user_cart_joiner = logged_user.cart.cart_joiners
-        byebug
+        # byebug
         item = logged_user_cart_joiner.find_by(item_id: params[:item_id])
         
         if item.nil? 
