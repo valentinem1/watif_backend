@@ -21,13 +21,31 @@ class CartJoinersController < ApplicationController
 
         # find the item in the logged_user cart_joiner
         # if it exist count how many times it is in cart_joiner
-        @added_item = Item.find(params[:item_id])
+
+        logged_user_cart_joiner = logged_user.cart.cart_joiners
+        byebug
+        item = logged_user_cart_joiner.find_by(item_id: params[:item_id])
         
-        @new_item_quantity = @added_item.quantity - 1
-        @added_item.update(quantity: @new_item_quantity)
+        if item.nil? 
+            new_item_quantity = item.quantity - 1
+            item.update(quantity: new_item_quantity)
+            
+            create_cart_joiner = cart_joiner_params.merge({cart_id: logged_user.cart.id})
+            cart_joiner = CartJoiner.create(create_cart_joiner)
+        else
+            nil
+        end
+
+        # render json: add_joiner
+
+
+        # @added_item = Item.find(params[:item_id])
         
-        create_cart_joiner = cart_joiner_params.merge({cart_id: logged_user.cart.id})
-        @cart_joiner = CartJoiner.create(create_cart_joiner)
+        # @new_item_quantity = @added_item.quantity - 1
+        # @added_item.update(quantity: @new_item_quantity)
+        
+        # create_cart_joiner = cart_joiner_params.merge({cart_id: logged_user.cart.id})
+        # @cart_joiner = CartJoiner.create(create_cart_joiner)
 
         # functionality to increase quantity in cart without duplicating an item
         # check_item = logged_user.cart.cart_joiners.any?{|cart_joiner| cart_joiner[:item_id] === params[:item_id]}
@@ -46,7 +64,7 @@ class CartJoinersController < ApplicationController
 
         # end
         
-        render json: @cart_joiner
+        render json: cart_joiner
     end
 
     def destroy
