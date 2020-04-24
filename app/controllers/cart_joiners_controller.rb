@@ -24,29 +24,15 @@ class CartJoinersController < ApplicationController
     end
 
     def destroy
-        # functionality to decrease item quantity in cart without deleting all of them
-        # if item already exists in cart_joiner cart_joiner.quantity -= 1
-        # else destroy 
-        
-        # @cart_joiner = CartJoiner.find(params[:id]).item_id
         @cart_joiner = CartJoiner.find(params[:id])
         @removed_id = @cart_joiner.item_id
-        # @removed_id = CartJoiner.find(params[:id]).item_id
         @removed_item = Item.find(@removed_id)
-        
-        # if(@removed_id && @cart_joiner)
 
-            # @new_cart_quantity = @cart_joiner.quantity - 1
+        @new_item_quantity = @removed_item.quantity + 1
+        @removed_item.update(quantity: @new_item_quantity)
 
-            # @cart_joiner.update(quantity: @new_cart_quantity)
-
-            @new_item_quantity = @removed_item.quantity + 1
-            @removed_item.update(quantity: @new_item_quantity)
-
-        # elsif(@cart_joiner.quantity = 1)
-            @cart_joiner = CartJoiner.find(params[:id])
-            @cart_joiner.destroy
-        # end
+        @cart_joiner = CartJoiner.find(params[:id])
+        @cart_joiner.destroy
         
         render json: {message: "Item has been deleted", cart_joiner: @cart_joiner, item: @removed_item}
     end
