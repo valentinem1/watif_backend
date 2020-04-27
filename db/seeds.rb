@@ -5,11 +5,11 @@ Dotenv.load
 Item.destroy_all
 
 API_KEY = ENV['ETSY_API_KEY']
-
+# fetch data from API.
 etsy_data = RestClient.get("https://openapi.etsy.com/v2/listings/active?api_key=#{API_KEY}")
-
+# parse it to be able to read it in ruby.
 item_array = JSON.parse(etsy_data)["results"]
-
+# iterate over the api data to assign it and save it in the database.
 item_array.each do |item|
     Item.create(
         title: item["title"],
@@ -21,6 +21,7 @@ item_array.each do |item|
     )
 end
 
+########## API doesn't provide image. Then add to manually assigned images to items one by one.
 # item_one = Item.find_by(id: 1)
 # item_one.image = 'https://i.etsystatic.com/10854006/r/il/284d7c/2148918968/il_794xN.2148918968_7fkp.jpg'
 # item_one.save
