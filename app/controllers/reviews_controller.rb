@@ -13,7 +13,9 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        # byebug
+        # merge the params for the reviews with the logged in user
+        # it enables to create review for the user logged in
+        # which means the user who create the review.
         create_review = review_params.merge({user_id: logged_user.id})
         @review = Review.create(create_review)
 
