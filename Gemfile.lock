@@ -70,6 +70,9 @@ GEM
       activesupport
     concurrent-ruby (1.1.6)
     crass (1.0.6)
+    ddtrace (0.34.2)
+      msgpack
+    dogstatsd-ruby (4.8.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.5)
@@ -184,6 +187,8 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
+  ddtrace
+  dogstatsd-ruby
   dotenv
   jwt (~> 2.2)
   listen (>= 3.0.5, < 3.2)

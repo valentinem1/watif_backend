@@ -45,3 +45,9 @@ gem 'rest-client'
 gem 'active_model_serializers'
 gem 'stripe'
 gem 'dotenv'
+
+# datadog statsD
+gem 'dogstatsd-ruby'
+
+source 'https://rubygems.org'
+gem 'ddtrace'
