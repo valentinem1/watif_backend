@@ -23,7 +23,7 @@ Dotenv.load
 
 ########## API doesn't provide image. Then add to manually assigned images to items one by one.
 item_one = Item.find_by(id: 1)
-item_one.image = 'https://i.etsystatic.com/11643729/r/il/d75c0b/2268455318/il_794xN.2268455318_iuhk.jpg'
+item_one.image = 'https://i.etsystatic.com/15727192/r/il/e609ee/1775442377/il_794xN.1775442377_lep7.jpg'
 item_one.save
 
 item_two = Item.find_by(id: 2)
